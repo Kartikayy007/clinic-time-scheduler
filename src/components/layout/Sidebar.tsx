@@ -1,9 +1,26 @@
 
 import React from 'react';
-import { Calendar, Clock, User, FileText, MessageSquare, Settings, LogOut } from 'lucide-react';
+import { Calendar, Clock, User, FileText, MessageSquare, Settings } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-const Sidebar = () => {
+const tabs = [
+  { id: 'overview', label: 'Overview', icon: Calendar },
+  { id: 'appointments', label: 'Appointments', icon: Clock },
+  { id: 'doctors', label: 'Doctors', icon: User },
+  { id: 'pathology', label: 'Pathology Results', icon: FileText },
+  { id: 'chats', label: 'Chats', icon: MessageSquare, badge: 2 },
+];
+
+const accountTabs = [
+  { id: 'settings', label: 'Settings', icon: Settings }
+];
+
+interface SidebarProps {
+  selectedTab: string;
+  onSelectTab: (tabId: string) => void;
+}
+
+const Sidebar = ({ selectedTab, onSelectTab }: SidebarProps) => {
   return (
     <div className="h-screen bg-sidebar w-64 p-4 flex flex-col border-r border-sidebar-border">
       <div className="flex items-center mb-10 mt-2">
@@ -15,56 +32,29 @@ const Sidebar = () => {
 
       <nav className="flex-1">
         <ul className="space-y-2">
-          <li>
-            <a 
-              href="#" 
-              className="flex items-center p-3 text-sidebar-foreground rounded-md hover:bg-sidebar-accent group"
-            >
-              <Calendar className="mr-3 h-5 w-5" />
-              <span>Overview</span>
-            </a>
-          </li>
-          <li>
-            <a 
-              href="#" 
-              className={cn(
-                "flex items-center p-3 rounded-md group bg-sidebar-accent text-sidebar-accent-foreground"
-              )}
-            >
-              <Clock className="mr-3 h-5 w-5" />
-              <span className="font-medium">Appointments</span>
-            </a>
-          </li>
-          <li>
-            <a 
-              href="#" 
-              className="flex items-center p-3 text-sidebar-foreground rounded-md hover:bg-sidebar-accent group"
-            >
-              <User className="mr-3 h-5 w-5" />
-              <span>Doctors</span>
-            </a>
-          </li>
-          <li>
-            <a 
-              href="#" 
-              className="flex items-center p-3 text-sidebar-foreground rounded-md hover:bg-sidebar-accent group"
-            >
-              <FileText className="mr-3 h-5 w-5" />
-              <span>Pathology Results</span>
-            </a>
-          </li>
-          <li>
-            <a 
-              href="#" 
-              className="flex items-center p-3 text-sidebar-foreground rounded-md hover:bg-sidebar-accent group"
-            >
-              <MessageSquare className="mr-3 h-5 w-5" />
-              <span>Chats</span>
-              <span className="ml-auto bg-destructive text-destructive-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                2
-              </span>
-            </a>
-          </li>
+          {tabs.map((tab) => (
+            <li key={tab.id}>
+              <button
+                type="button"
+                onClick={() => onSelectTab(tab.id)}
+                className={cn(
+                  "flex items-center w-full p-3 rounded-md group",
+                  selectedTab === tab.id
+                    ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
+                    : "text-sidebar-foreground hover:bg-sidebar-accent"
+                )}
+                aria-current={selectedTab === tab.id ? 'page' : undefined}
+              >
+                <tab.icon className="mr-3 h-5 w-5" />
+                <span>{tab.label}</span>
+                {tab.badge && (
+                  <span className="ml-auto bg-destructive text-destructive-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {tab.badge}
+                  </span>
+                )}
+              </button>
+            </li>
+          ))}
         </ul>
 
         <div className="mt-10">
@@ -72,24 +62,24 @@ const Sidebar = () => {
             Account
           </h3>
           <ul className="space-y-2">
-            <li>
-              <a 
-                href="#" 
-                className="flex items-center p-3 text-sidebar-foreground rounded-md hover:bg-sidebar-accent group"
-              >
-                <Settings className="mr-3 h-5 w-5" />
-                <span>Settings</span>
-              </a>
-            </li>
-            <li>
-              <a 
-                href="#" 
-                className="flex items-center p-3 text-destructive rounded-md hover:bg-sidebar-accent group"
-              >
-                <LogOut className="mr-3 h-5 w-5" />
-                <span>Logout</span>
-              </a>
-            </li>
+            {accountTabs.map((tab) => (
+              <li key={tab.id}>
+                <button
+                  type="button"
+                  onClick={() => onSelectTab(tab.id)}
+                  className={cn(
+                    "flex items-center w-full p-3 rounded-md group",
+                    selectedTab === tab.id
+                      ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
+                      : "text-sidebar-foreground hover:bg-sidebar-accent"
+                  )}
+                  aria-current={selectedTab === tab.id ? 'page' : undefined}
+                >
+                  <tab.icon className="mr-3 h-5 w-5" />
+                  <span>{tab.label}</span>
+                </button>
+              </li>
+            ))}
           </ul>
         </div>
       </nav>
