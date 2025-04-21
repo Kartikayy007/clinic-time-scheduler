@@ -58,7 +58,6 @@ const Sidebar = ({ selectedTab, onSelectTab }: SidebarProps) => {
                     {tab.badge}
                   </span>
                 )}
-                {/* Animated underline for selected tab */}
                 <span
                   className={cn(
                     "absolute left-0 bottom-0 h-0.5 w-0 bg-primary transition-all duration-300",
@@ -109,7 +108,6 @@ const Sidebar = ({ selectedTab, onSelectTab }: SidebarProps) => {
         </div>
       </nav>
 
-      {/* Emergency Hotlines with animation */}
       <div className="mt-auto mb-2 bg-red-100 dark:bg-red-900/30 p-3 rounded-lg animate-fade-in shadow">
         <div className="flex items-center">
           <div className="rounded-full bg-red-500 p-1 animate-pulse">

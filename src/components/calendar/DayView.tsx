@@ -7,7 +7,6 @@ import { cn } from '@/lib/utils';
 const DayView = () => {
   const { currentDate, appointments, setIsModalOpen, setSelectedAppointment, setModalMode, setSelectedTimeSlot } = useAppointments();
   
-  // Generate time slots from 8:00 to 17:00 (5 PM)
   const timeSlots = Array.from({ length: 19 }).map((_, i) => {
     const hour = 8 + Math.floor(i / 2);
     const minute = i % 2 === 0 ? 0 : 30;

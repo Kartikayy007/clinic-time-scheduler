@@ -141,14 +141,6 @@ const OverviewContent = () => {
           </div>
         </div>
       </div>
-      <div className="mt-8">
-        <div className="bg-gradient-to-r from-[#e2d1c3] via-[#fef9d7] to-[#ffe29f] rounded-lg px-5 py-4 flex items-center gap-4 shadow animate-fade-in">
-          <span className="bg-primary/10 text-primary rounded-full h-10 w-10 flex items-center justify-center mr-2 shadow animate-scale-in"><Calendar /></span>
-          <span className="text-[15px] text-gray-700 dark:text-gray-100 animate-fade-in">
-            <strong className="font-medium">Tip:</strong> Book your annual checkup early to avoid long wait times!
-          </span>
-        </div>
-      </div>
     </div>
   );
 };

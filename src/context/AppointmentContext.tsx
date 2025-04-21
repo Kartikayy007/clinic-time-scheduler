@@ -100,7 +100,7 @@ const sampleAppointments: Appointment[] = [
 
 export const AppointmentProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [appointments, setAppointments] = useState<Appointment[]>(sampleAppointments);
-  const [currentDate, setCurrentDate] = useState<Date>(new Date(2025, 3, 21)); // Set to April 21, 2025
+  const [currentDate, setCurrentDate] = useState<Date>(new Date(2025, 3, 21));
   const [viewMode, setViewMode] = useState<'day' | 'week' | 'month'>('week');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);

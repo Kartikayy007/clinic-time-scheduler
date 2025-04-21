@@ -7,10 +7,8 @@ import { cn } from '@/lib/utils';
 const WeekView = () => {
   const { currentDate, appointments, setIsModalOpen, setSelectedAppointment, setModalMode, setSelectedTimeSlot } = useAppointments();
   
-  // Generate week days
   const weekDays = Array.from({ length: 7 }).map((_, i) => addDays(currentDate, i));
   
-  // Generate time slots from 8:00 to 17:00 (5 PM)
   const timeSlots = Array.from({ length: 19 }).map((_, i) => {
     const hour = 8 + Math.floor(i / 2);
     const minute = i % 2 === 0 ? 0 : 30;
@@ -31,7 +29,6 @@ const WeekView = () => {
     setIsModalOpen(true);
   };
   
-  // Filter appointments for the current week
   const getAppointmentsForSlot = (day: Date, hour: number, minute: number) => {
     const slotStart = setMinutes(setHours(new Date(day), hour), minute);
     const slotEnd = setMinutes(setHours(new Date(day), hour), minute + 30);
