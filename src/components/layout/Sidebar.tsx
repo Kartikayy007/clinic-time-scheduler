@@ -22,12 +22,12 @@ interface SidebarProps {
 
 const Sidebar = ({ selectedTab, onSelectTab }: SidebarProps) => {
   return (
-    <div className="h-screen bg-sidebar w-64 p-4 flex flex-col border-r border-sidebar-border">
+    <div className="h-screen bg-sidebar w-64 p-4 flex flex-col border-r border-sidebar-border animate-fade-in">
       <div className="flex items-center mb-10 mt-2">
-        <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center">
+        <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-md animate-scale-in">
           <span className="text-white font-bold">H</span>
         </div>
-        <h1 className="text-xl font-bold ml-2 text-foreground">HealthSync</h1>
+        <h1 className="text-xl font-bold ml-2 text-foreground select-none animate-fade-in">HealthSync</h1>
       </div>
 
       <nav className="flex-1">
@@ -38,26 +38,39 @@ const Sidebar = ({ selectedTab, onSelectTab }: SidebarProps) => {
                 type="button"
                 onClick={() => onSelectTab(tab.id)}
                 className={cn(
-                  "flex items-center w-full p-3 rounded-md group",
+                  "flex items-center w-full p-3 rounded-md group transition-all duration-200 relative overflow-hidden",
                   selectedTab === tab.id
-                    ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
-                    : "text-sidebar-foreground hover:bg-sidebar-accent"
+                    ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium shadow-md animate-scale-in"
+                    : "text-sidebar-foreground hover:bg-sidebar-accent/80 hover:shadow hover-scale"
                 )}
                 aria-current={selectedTab === tab.id ? 'page' : undefined}
               >
-                <tab.icon className="mr-3 h-5 w-5" />
-                <span>{tab.label}</span>
+                <tab.icon className={cn(
+                  "mr-3 h-5 w-5 transition-transform duration-300",
+                  selectedTab === tab.id ? "scale-110 animate-fade-in" : "group-hover:scale-105"
+                )} />
+                <span className={cn(
+                  "transition-all duration-150",
+                  selectedTab === tab.id ? "animate-fade-in" : ""
+                )}>{tab.label}</span>
                 {tab.badge && (
-                  <span className="ml-auto bg-destructive text-destructive-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  <span className="ml-auto bg-destructive text-destructive-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center animate-scale-in">
                     {tab.badge}
                   </span>
                 )}
+                {/* Animated underline for selected tab */}
+                <span
+                  className={cn(
+                    "absolute left-0 bottom-0 h-0.5 w-0 bg-primary transition-all duration-300",
+                    selectedTab === tab.id ? "w-full animate-fade-in" : "w-0"
+                  )}
+                />
               </button>
             </li>
           ))}
         </ul>
 
-        <div className="mt-10">
+        <div className="mt-10 animate-fade-in">
           <h3 className="text-xs uppercase text-sidebar-foreground/60 font-semibold tracking-wider mb-2 px-3">
             Account
           </h3>
@@ -68,15 +81,27 @@ const Sidebar = ({ selectedTab, onSelectTab }: SidebarProps) => {
                   type="button"
                   onClick={() => onSelectTab(tab.id)}
                   className={cn(
-                    "flex items-center w-full p-3 rounded-md group",
+                    "flex items-center w-full p-3 rounded-md group transition-all duration-200 relative overflow-hidden",
                     selectedTab === tab.id
-                      ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
-                      : "text-sidebar-foreground hover:bg-sidebar-accent"
+                      ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium shadow-md animate-scale-in"
+                      : "text-sidebar-foreground hover:bg-sidebar-accent/80 hover:shadow hover-scale"
                   )}
                   aria-current={selectedTab === tab.id ? 'page' : undefined}
                 >
-                  <tab.icon className="mr-3 h-5 w-5" />
-                  <span>{tab.label}</span>
+                  <tab.icon className={cn(
+                    "mr-3 h-5 w-5 transition-transform duration-300",
+                    selectedTab === tab.id ? "scale-110 animate-fade-in" : "group-hover:scale-105"
+                  )} />
+                  <span className={cn(
+                    "transition-all duration-150",
+                    selectedTab === tab.id ? "animate-fade-in" : ""
+                  )}>{tab.label}</span>
+                  <span
+                    className={cn(
+                      "absolute left-0 bottom-0 h-0.5 w-0 bg-primary transition-all duration-300",
+                      selectedTab === tab.id ? "w-full animate-fade-in" : "w-0"
+                    )}
+                  />
                 </button>
               </li>
             ))}
@@ -84,9 +109,10 @@ const Sidebar = ({ selectedTab, onSelectTab }: SidebarProps) => {
         </div>
       </nav>
 
-      <div className="mt-auto mb-2 bg-red-100 dark:bg-red-900/30 p-3 rounded-lg">
+      {/* Emergency Hotlines with animation */}
+      <div className="mt-auto mb-2 bg-red-100 dark:bg-red-900/30 p-3 rounded-lg animate-fade-in shadow">
         <div className="flex items-center">
-          <div className="rounded-full bg-red-500 p-1">
+          <div className="rounded-full bg-red-500 p-1 animate-pulse">
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
               className="h-5 w-5 text-white"
