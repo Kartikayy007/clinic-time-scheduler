@@ -155,22 +155,48 @@ const OverviewContent = () => {
 
 const DoctorsContent = () => (
   <div className="p-6">
-    <h2 className="text-2xl font-semibold mb-4 animate-fade-in">Doctors</h2>
-    <DoctorList />
+    <h2 className="text-2xl font-semibold mb-4">Doctors</h2>
+    <p className="text-muted-foreground">
+      List of doctors will appear here. (Demo content)
+    </p>
+    {/* List doctors */}
+    <ul className="mt-4 space-y-2">
+      <li className="p-3 rounded border bg-card">Dr. Priya Sharma (Cardiologist)</li>
+      <li className="p-3 rounded border bg-card">Dr. John Singh (Dermatologist)</li>
+      <li className="p-3 rounded border bg-card">Dr. Meera Patel (General Physician)</li>
+    </ul>
   </div>
 );
 
 const PathologyContent = () => (
   <div className="p-6">
-    <h2 className="text-2xl font-semibold mb-4 animate-fade-in">Pathology Results</h2>
-    <PathologyList />
+    <h2 className="text-2xl font-semibold mb-4">Pathology Results</h2>
+    <p className="text-muted-foreground">Recent pathology results will be listed here. (Demo content)</p>
+    <ul className="mt-4 space-y-2">
+      <li className="p-3 rounded border bg-card flex flex-col">
+        <span className="font-bold">Blood Test</span>
+        <span className="text-xs text-muted-foreground">Jul 10, 2024 • Normal</span>
+      </li>
+      <li className="p-3 rounded border bg-card flex flex-col">
+        <span className="font-bold">X-Ray Chest</span>
+        <span className="text-xs text-muted-foreground">Jun 27, 2024 • Needs Review</span>
+      </li>
+    </ul>
   </div>
 );
 
 const ChatsContent = () => (
   <div className="p-6">
-    <h2 className="text-2xl font-semibold mb-4 animate-fade-in">Chats</h2>
-    <ChatMessages />
+    <h2 className="text-2xl font-semibold mb-4">Chats</h2>
+    <p className="text-muted-foreground">Your recent chat messages. (Demo content)</p>
+    <ul className="mt-4 space-y-2">
+      <li className="p-3 rounded border bg-card">
+        <span className="font-bold">Dr. Priya Sharma:</span> Appointment on Monday?
+      </li>
+      <li className="p-3 rounded border bg-card">
+        <span className="font-bold">Reception:</span> Your test results are available.
+      </li>
+    </ul>
   </div>
 );
 
