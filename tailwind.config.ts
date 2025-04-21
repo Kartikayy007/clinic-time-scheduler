@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,13 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				appointment: {
+					emergency: "#ef4444", // red
+					examination: "#f59e0b", // amber
+					consultation: "#8b5cf6", // violet
+					checkup: "#ec4899", // pink
+					"sick-visit": "#3b82f6" // blue
 				}
 			},
 			borderRadius: {
